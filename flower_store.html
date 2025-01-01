@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر ورد | عطور فاخرة</title>
+    <style>
+        :root {
+            --primary-color: #9c6644;
+            --secondary-color: #54423d;
+            --accent-color: #c38e70;
+            --background-color: #f8f5f2;
+            --text-color: #2d3436;
+            --gold: #d4af37;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 0;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/api/placeholder/1920/400') center/cover;
+            opacity: 0.1;
+        }
+
+        .header-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .navbar {
+            background: rgba(255,255,255,0.95);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 3rem 0;
+            background: white;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1.5rem;
+            max-width: 300px;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 20px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gold);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary-color);
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .new-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .old-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(156, 102, 68, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+            font-size: 2rem;
+        }
+
+        .section-title span {
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--gold);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">ورد</a>
+            <div class="nav-links">
+                <a href="#">الرئيسية</a>
+                <a href="#">العطور</a>
+                <a href="#">العروض</a>
+                <a href="#">تواصل معنا</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <h1>متجر ورد للعطور</h1>
+            <p>عطور فاخرة تجمع بين الأصالة والفخامة</p>
+        </div>
+    </header>
+
+    <div class="features">
+        <div class="feature">
+            <div class="feature-icon">🌟</div>
+            <h3>عطور أصلية</h3>
+            <p>ضمان أصالة جميع العطور</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🚚</div>
+            <h3>توصيل سريع</h3>
+            <p>توصيل لجميع مدن المملكة</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">💝</div>
+            <h3>تغليف فاخر</h3>
+            <p>تغليف راقي مناسب للهدايا</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">
+            مجموعتنا المميزة
+            <span></span>
+        </h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-badge">جديد</div>
+                <img src="C:\Users\mjrat\Downloads\web\فخمة عطر.png" alt="عطر ملكي" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">عطر ملكي خاص</h3>
+                    <p class="product-description">عطر فاخر بمزيج من العود والمسك مع لمسات من الورد الطائفي</p>
+                    <div class="price-container">
+                        <span class="new-price">750 ريال</span>
+                        <span class="old-price">990 ريال</span>
+                    </div>
+                    <button class="btn">أضف للسلة</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="C:\Users\mjrat\Downloads\web\علبة عطر اسمها عطر الأميرة.png" alt="عطر الأميرة" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">عطر الأميرة</h3>
+                    <p class="product-description">تركيبة فريدة من الياسمين والفانيليا مع لمسات زهرية</p>
+                    <div class="price-container">
+                        <span class="new-price">890 ريال</span>
+                        <span class="old-price">1150 ريال</span>
+                    </div>
+                    <button class="btn">أضف للسلة</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-badge">الأكثر مبيعاً</div>
+                <img src="C:\Users\mjrat\Downloads\web\علبة عطر اسمها عود ملكي خاص.png" alt="عطر العود الملكي" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">عود ملكي خاص</h3>
+                    <p class="product-description">عطر شرقي فاخر بتركيبة خاصة من أجود أنواع العود</p>
+                    <div class="price-container">
+                        <span class="new-price">1200 ريال</span>
+                        <span class="old-price">1500 ريال</span>
+                    </div>
+                    <button class="btn">أضف للسلة</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="C:\Users\mjrat\Downloads\web\علبة عطر اسمها مسك الليل.png" alt="مسك الليل" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">مسك الليل</h3>
+                    <p class="product-description">عطر مميز بنفحات المسك الأسود مع العنبر والباتشولي</p>
+                    <div class="price-container">
+                        <span class="new-price">950 ريال</span>
+                        <span class="old-price">1250 ريال</span>
+                    </div>
+                    <button class="btn">أضف للسلة</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="C:\Users\mjrat\Downloads\web\علبة عطر اسمها عطر السلطان.png" alt="عطر السلطان" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">عطر السلطان</h3>
+                    <p class="product-description">مزيج فاخر من العود الهندي والعنبر مع لمسات خشبية</p>
+                    <div class="price-container">
+                        <span class="new-price">1100 ريال</span>
+                        <span class="old-price">1400 ريال</span>
+                    </div>
+                    <button class="btn">أضف للسلة</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-badge">حصري</div>
+                <img src="C:\Users\mjrat\Downloads\web\علبة عطر اسمها عطر الذهب.png" alt="عطر الذهب" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">عطر الذهب</h3>
+                    <p class="product-description">تركيبة حصرية من أفخر العطور الشرقية مع لمسات فرنسية</p>
+                    <div class="price-container">
+                        <span class="new-price">1500 ريال</span>
+                        <span class="old-price">1800 ريال</span>
+                    </div>
+                    <button class="btn">أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
